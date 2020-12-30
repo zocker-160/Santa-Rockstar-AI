@@ -156,6 +156,10 @@ async def _loop(sct: MSSBase):
         #t1 = time.time()
         await _checkAI(pxData)
         #t2 = time.time()
+
+        if keyboard.is_pressed(KEYMAPPING[3]):
+            await _saveImage(pxData, CATLIST[3])
+
         #await asyncio.sleep(TIME_SLEEP)
         #await asyncio.gather( *[ _check(pxData, i) for i, _ in enumerate(POSLIST) ] )
 
