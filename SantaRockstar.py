@@ -41,6 +41,7 @@ print(refPoint)
 
 xRef, yRef = refPoint
 yRef -= 25
+#yRef -= 20
 
 refLines = [
     ( xRef - 680, yRef),
@@ -73,7 +74,7 @@ pa.click()
 #posList = [0, 120, 255, 390, 524]
 
 
-TIME_SLEEP = 0.05
+TIME_SLEEP = 0.04
 
 bbox = ( refLines[0][0], yRef, refLines[4][0], yRef+16 )
 print(bbox)
@@ -137,9 +138,9 @@ async def _checkAI(data: ScreenShot):
         global resultList
         resultList.append(confidence)
 
-        if pred_class == 3:
-            #await _saveImage(data, CATLIST[pred_class])
-            pass
+        #if pred_class == 1:
+        #await _saveImage(data, "")
+        #pass
     else:
         if random.randint(0, 1000) <= 1 and confidence > 0.50:
             #await _saveImage(data, CATLIST[-1])
@@ -157,9 +158,9 @@ async def _loop(sct: MSSBase):
         await _checkAI(pxData)
         #t2 = time.time()
 
-        #if keyboard.is_pressed("h"):
-        #    print("h is pressed")
-        #    await _saveImage(pxData, CATLIST[3])
+        #if keyboard.is_pressed("j"):
+        #    print("j is pressed")
+        #    await _saveImage(pxData, "5brown")
         #    await asyncio.sleep(0.1)
 
         #await asyncio.sleep(TIME_SLEEP)
@@ -168,7 +169,7 @@ async def _loop(sct: MSSBase):
 
 if __name__ == "__main__":
 
-    model = load_model("AIGen7.3.h5")
+    model = load_model("AIGen9.5.h5")
 
     loop = asyncio.get_event_loop()
 

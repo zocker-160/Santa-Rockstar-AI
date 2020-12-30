@@ -6,7 +6,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential, load_model
 
 DATA_DIR = "trainset"
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 IMG_X, IMG_Y = 525, 16
 GENERATIONS = 15
 
@@ -90,7 +90,7 @@ def _train_model(model: Sequential, name: str, generations=15):
 
 if __name__ == "__main__":
 
-  #_train_model( _get_new_model(), "AIGen8.0.h5", generations=10 )
-  _train_model( load_model("AIGen7.2.h5"), name="AIGen7.3.h5", generations=15 )
+  #_train_model( _get_new_model(), "AIGen9.0.h5", generations=15 )
+  _train_model( load_model("AIGen9.3.h5"), name="AIGen9.5.h5", generations=15 )
 
   sys.exit()
