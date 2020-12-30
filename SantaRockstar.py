@@ -126,7 +126,7 @@ async def _checkAI(data: ScreenShot):
     confidence = round(np.max(score)*100, 2)
     time_taken = round(t2-t1, 2)
 
-    if pred_class < 3:
+    if pred_class < len(CATLIST)-1:
         print(f"trigger {pred_class}; confidence: {confidence}%; prediction time: {time_taken} ms")
         #await _triggerButton(pred_cath)
 
@@ -137,7 +137,7 @@ async def _checkAI(data: ScreenShot):
         global resultList
         resultList.append(confidence)
 
-        if pred_class == 0 or pred_class == 1:
+        if pred_class == 3:
             #await _saveImage(data, CATLIST[pred_class])
             pass
     else:
@@ -157,8 +157,10 @@ async def _loop(sct: MSSBase):
         await _checkAI(pxData)
         #t2 = time.time()
 
-        if keyboard.is_pressed(KEYMAPPING[3]):
-            await _saveImage(pxData, CATLIST[3])
+        #if keyboard.is_pressed("h"):
+        #    print("h is pressed")
+        #    await _saveImage(pxData, CATLIST[3])
+        #    await asyncio.sleep(0.1)
 
         #await asyncio.sleep(TIME_SLEEP)
         #await asyncio.gather( *[ _check(pxData, i) for i, _ in enumerate(POSLIST) ] )
@@ -166,7 +168,7 @@ async def _loop(sct: MSSBase):
 
 if __name__ == "__main__":
 
-    model = load_model("AIGen6.2.h5")
+    model = load_model("AIGen7.3.h5")
 
     loop = asyncio.get_event_loop()
 

@@ -90,8 +90,7 @@ def _train_model(model: Sequential, name: str, generations=15):
 
 if __name__ == "__main__":
 
-  #_train_model( _get_new_model(), "AIGen6.0.h5" )
-
-  _train_model( load_model("AIGen6.1.h5"), name="AIGen6.2.h5", generations=15 )
+  #_train_model( _get_new_model(), "AIGen8.0.h5", generations=10 )
+  _train_model( load_model("AIGen7.2.h5"), name="AIGen7.3.h5", generations=15 )
 
   sys.exit()
