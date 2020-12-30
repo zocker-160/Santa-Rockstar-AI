@@ -6,7 +6,7 @@ import asyncio
 
 import pyautogui as pa
 
-import keyboard
+import keyboard # needs root on Linux 
 
 from mss import mss
 from mss.base import MSSBase, ScreenShot
@@ -110,50 +110,6 @@ async def _triggerButton(button: int):
     await asyncio.sleep(TIME_SLEEP)
 
 
-async def _check(data: ScreenShot, iter: int):
-    pix = data.pixel(POSLIST[iter], 8)
-
-    trigger = False
-
-    """
-    if iter == 0: # green
-        color = "green"import json
-import sys
-        if pix[1] > LIMITLIST[iter] and pix[1] == max(pix):
-            trigger = True
-        elif pix[1] > LIMITLIST[iter] + 30:
-            trigger = True
-            
-    elif iter == 1: # red
-        color = "red"
-        if pix[0] > LIMITLIST[iter] and pix[0] == max(pix):
-            trigger = True
-        elif pix[0] > LIMITLIST[iter] + 30:
-            trigger = True
-
-    elif iter == 2: # yellow
-        color = "yellow"
-        if any(x > LIMITLIST[iter] for x in pix):
-            trigger = True
-    else:
-        return
-    """
-
-    #if trigger:
-    if any(x > LIMITLIST[iter] for x in pix):
-        await _triggerButton(iter)
-        await _saveImage(data, CATLIST[iter])
-
-        global resultList
-        print(KEYMAPPING[iter], pix)
-        resultList.append(max(pix))
-    else:
-        if random.randint(0, 100) <= 1:
-            #pass
-            await _saveImage(data, CATLIST[-1])
-
-
-
 async def _checkAI(data: ScreenShot):
     img = Image.frombytes("RGB", data.size, data.bgra, "raw", "BGRX")
     input_arr = keras.preprocessing.image.img_to_array(img)
@@ -202,6 +158,7 @@ async def _loop(sct: MSSBase):
         #t2 = time.time()
         #await asyncio.sleep(TIME_SLEEP)
         #await asyncio.gather( *[ _check(pxData, i) for i, _ in enumerate(POSLIST) ] )
+
 
 if __name__ == "__main__":
 
