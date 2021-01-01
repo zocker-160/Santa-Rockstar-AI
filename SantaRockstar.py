@@ -135,8 +135,8 @@ async def _checkAI(data: ScreenShot):
         await asyncio.gather( *triggerList )
         #print(score)
 
-        global resultList
-        resultList.append(confidence)
+        #global resultList
+        #resultList.append(confidence)
 
         #if pred_class == 1:
         #await _saveImage(data, "")
@@ -170,6 +170,7 @@ async def _loop(sct: MSSBase):
 if __name__ == "__main__":
 
     model = load_model("AIGen9.5.h5")
+    #model = load_model("AIGen10.5.h5")
 
     loop = asyncio.get_event_loop()
 
@@ -181,9 +182,9 @@ if __name__ == "__main__":
             #_loop(sct)
             loop.run_forever()
         except:
-            print("exit...")
+            print("\nexit...")
         finally:
-            print("lowest confidence:", min(resultList))
+            #print("lowest confidence:", min(resultList))
             #print("number under 200:", len([ i for i in resultList if i < 200 ]))
-
-            exit()
+            loop.stop()
+            #exit()
